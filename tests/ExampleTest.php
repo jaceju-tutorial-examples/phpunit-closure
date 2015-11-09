@@ -4,15 +4,15 @@ use Ns\Example;
 
 class ExampleTest extends PHPUnit_Framework_TestCase
 {
-	public function testRunWithMe()
-	{
+    public function testRunWithMe()
+    {
         $assert = $this;
         $example = new Example();
 
         $example->runWithMe(function () use ($assert) {
             $assert->assertInstanceOf(Example::class, $this);
         });
-	}
+    }
 
     public function testRunWithoutMe()
     {
