@@ -6,8 +6,6 @@ use Closure;
 
 class Example
 {
-    private $num = '123';
-
     public function runWithMe(Closure $closure)
     {
         $closure = $closure->bindTo($this);
