@@ -9,6 +9,18 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         Mockery::close();
     }
 
+    public function testWrongExample()
+    {
+        $this->markTestSkipped();
+        $example = new Example();
+
+        $closure = Mockery::mock(function ($target) {});
+        $example->runAndInject($closure);
+
+        $closure = Mockery::mock(Closure::class);
+        $example->runAndInject($closure);
+    }
+
     public function testRunAndInjection()
     {
         $assert = $this;
