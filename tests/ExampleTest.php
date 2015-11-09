@@ -4,6 +4,11 @@ use Ns\Example;
 
 class ExampleTest extends PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        Mockery::close();
+    }
+
     public function testRunAndInjection()
     {
         $assert = $this;
