@@ -15,7 +15,7 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 
     public function testRunWithoutMe()
     {
-        $spy = Mockery::mock(function () {});
+        $spy = Mockery::mock(new stdClass());
         $spy->shouldReceive('detected')->once();
 
         $example = new Example();
