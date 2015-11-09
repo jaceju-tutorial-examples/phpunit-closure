@@ -4,6 +4,16 @@ use Ns\Example;
 
 class ExampleTest extends PHPUnit_Framework_TestCase
 {
+    public function testRunAndInjection()
+    {
+        $assert = $this;
+        $example = new Example();
+
+        $example->runAndInject(function ($target) use ($assert) {
+            $assert->assertInstanceOf(Example::class, $target);
+        });
+    }
+
     public function testRunWithMe()
     {
         $assert = $this;
