@@ -20,7 +20,7 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 
         $example = new Example();
         $example->runWithoutMe(function () use ($spy) {
-            $spy->call();
+            $spy->call($this);
         });
     }
 }
