@@ -15,10 +15,10 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         $example = new Example();
 
         $closure = Mockery::mock(function ($target) {});
-        $example->runAndInject($closure);
+        $example->runClosureWithTargetInject($closure);
 
         $closure = Mockery::mock(Closure::class);
-        $example->runAndInject($closure);
+        $example->runClosureWithTargetInject($closure);
     }
 
     public function testRunAndInjection()
@@ -26,7 +26,7 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         $assert = $this;
         $example = new Example();
 
-        $example->runAndInject(function ($target) use ($assert) {
+        $example->runClosureWithTargetInject(function ($target) use ($assert) {
             $assert->assertInstanceOf(Example::class, $target);
         });
     }
@@ -36,7 +36,7 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         $assert = $this;
         $example = new Example();
 
-        $example->runWithMe(function () use ($assert) {
+        $example->runClosureWithTarget(function () use ($assert) {
             $assert->assertInstanceOf(Example::class, $this);
         });
     }
@@ -47,7 +47,7 @@ class ExampleTest extends PHPUnit_Framework_TestCase
         $spy->shouldReceive('detected')->once();
 
         $example = new Example();
-        $example->runWithoutMe(function () use ($spy) {
+        $example->runClosure(function () use ($spy) {
             $spy->detected();
         });
     }

@@ -6,18 +6,18 @@ use Closure;
 
 class Example
 {
-    public function runAndInject(Closure $closure)
+    public function runClosureWithTargetInject(Closure $closure)
     {
         $closure($this);
     }
 
-    public function runWithMe(Closure $closure)
+    public function runClosureWithTarget(Closure $closure)
     {
         $closure = $closure->bindTo($this);
         $closure();
     }
 
-    public function runWithoutMe(Closure $closure)
+    public function runClosure(Closure $closure)
     {
         $closure();
     }
