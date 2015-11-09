@@ -13,8 +13,8 @@ class Example
 
     public function runClosureWithTarget(Closure $closure)
     {
-        $closure = $closure->bindTo($this);
-        $closure();
+        $cb = $closure->bindTo($this);
+        $cb();
     }
 
     public function runClosure(Closure $closure)

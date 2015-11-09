@@ -23,11 +23,10 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 
     public function testRunAndInjection()
     {
-        $assert = $this;
         $example = new Example();
 
-        $example->runClosureWithTargetInject(function ($target) use ($assert) {
-            $assert->assertInstanceOf(Example::class, $target);
+        $example->runClosureWithTargetInject(function ($target) {
+            $this->assertInstanceOf(Example::class, $target);
         });
     }
 
@@ -43,10 +42,11 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 
     public function testRunWithoutMe()
     {
-        $spy = Mockery::mock(new stdClass());
+        $spy = Mockery::mock(stdClass::class);
+        $example = new Example();
+
         $spy->shouldReceive('detected')->once();
 
-        $example = new Example();
         $example->runClosure(function () use ($spy) {
             $spy->detected();
         });
