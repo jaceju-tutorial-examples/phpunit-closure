@@ -16,11 +16,11 @@ class ExampleTest extends PHPUnit_Framework_TestCase
     public function testRunWithoutMe()
     {
         $spy = Mockery::mock(function () {});
-        $spy->shouldReceive('call')->withAnyArgs()->once();
+        $spy->shouldReceive('detected')->once();
 
         $example = new Example();
         $example->runWithoutMe(function () use ($spy) {
-            $spy->call($this);
+            $spy->detected();
         });
     }
 }
