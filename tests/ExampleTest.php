@@ -6,10 +6,11 @@ class ExampleTest extends PHPUnit_Framework_TestCase
 {
 	public function testRunWithMe()
 	{
-        $self = $this;
+        $assert = $this;
         $example = new Example();
-        $example->runWithMe(function () use ($self) {
-            $self->assertInstanceOf(Example::class, $this);
+
+        $example->runWithMe(function () use ($assert) {
+            $assert->assertInstanceOf(Example::class, $this);
         });
 	}
 
